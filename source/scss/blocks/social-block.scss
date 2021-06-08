@@ -28,8 +28,15 @@
     border-radius: 50%;
     background-color: $c-light;
     border: 2px solid $c-light;
-    transition: all 0.35s ease;
+    transform: translate(-50%, -50%) scale(0);
+    transition-property: all, transform;
+    transition-duration: 0.35s;
+    transition-timing-function: ease, cubic-bezier(0.25, 0.01, 0.25, 1.5);
     z-index: -1;
+
+    .loaded & {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 
   svg {

@@ -18,7 +18,16 @@ export default class FullPageScroll {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
 
+    window.addEventListener(`load`, () => {
+      this.onLoad();
+    });
+  }
+
+  onLoad() {
     this.onUrlHashChanged();
+    setTimeout(() => {
+      document.body.classList.add(`loaded`);
+    }, 0);
   }
 
   onScroll(evt) {
