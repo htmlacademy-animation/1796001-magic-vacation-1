@@ -1,0 +1,14 @@
+.background-screen {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 0%;
+  background-color: $c-dark;
+  transition: height 0.5s ease 0.5s;
+  z-index: 1;
+
+  &.active {
+    height: 100%;
+    transition-delay: 0s;
+  }
+}
