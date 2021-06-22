@@ -22,6 +22,7 @@
     text-transform: uppercase;
     font-size: 1.2rem;
     line-height: 1.2;
+    transition-property: opacity;
 
     @media (min-width: $stop-scaling) {
       font-size: 12px;
@@ -35,6 +36,21 @@
     @media (max-width: $mobile) and (orientation: landscape) {
       font-size: 1rem;
       opacity: 0.5;
+    }
+
+    @media (min-width: $tablet + 1px) and (orientation: landscape) {
+      .active-footer & {
+        opacity: 0;
+        transition-duration: 0.5s;
+      }
+
+      .active-footer .active & {
+        opacity: 1;
+      }
+
+      .show:not(.active) & {
+        opacity: 0;
+      }
     }
   }
 

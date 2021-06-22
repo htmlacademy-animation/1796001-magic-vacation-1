@@ -81,15 +81,20 @@
     font-size: 1.6rem;
   }
 
-  .active & {
+  .show & {
     width: 100%;
     opacity: 1;
   }
 }
 
 .form__button {
+  min-width: 18.1rem;
   padding-left: 4.6rem;
   padding-right: 4.6rem;
+  opacity: 0;
+  transition-property: color, opacity;
+  transition-duration: 0.5s, 0s;
+  color: transparent;
 
   @media (orientation: portrait) {
     position: relative;
@@ -97,6 +102,7 @@
     padding: 0;
     width: 4rem;
     height: 4rem;
+    min-width: auto;
     font-size: 0;
   }
 
@@ -106,12 +112,23 @@
     padding: 0;
     width: 6rem;
     height: 6rem;
+    min-width: auto;
     font-size: 0;
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     width: 4rem;
     height: 4rem;
+  }
+
+  &:hover {
+    transition-delay: 0s;
+  }
+
+  .show & {
+    transition-delay: 0.2s;
+    opacity: 1;
+    color: $c-dark;
   }
 
   svg {
