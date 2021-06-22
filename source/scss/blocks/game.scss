@@ -49,6 +49,12 @@
   font-size: 4.8rem;
   line-height: 0.906;
   letter-spacing: -0.04em;
+  opacity: 0;
+  animation-name: showGameTitle;
+  animation-duration: 0.7s;
+  animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
 
   @media (min-width: $stop-scaling) {
     font-size: 48px;
@@ -68,6 +74,10 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+
+  .show & {
+    animation-play-state: running;
+  }
 }
 
 .game__counter {
@@ -78,6 +88,12 @@
   font-size: 4.8rem;
   line-height: 0.906;
   letter-spacing: 0;
+  opacity: 0;
+  animation-name: showGameCounter;
+  animation-duration: 0.35s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
 
   @media (min-width: $stop-scaling) {
     font-size: 48px;
@@ -101,6 +117,10 @@
     font-size: 2rem;
     margin-bottom: 1rem;
   }
+
+  .show & {
+    animation-play-state: running;
+  }
 }
 
 .game__body {
@@ -120,4 +140,16 @@
 .game__button {
   margin: 0 30px 30px;
   display: block;
+}
+
+@keyframes showGameTitle {
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes showGameCounter {
+  100% {
+    opacity: 1;
+  }
 }

@@ -12,6 +12,9 @@ export default class FullPageScroll {
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.withBackroundScreensNames = [`prizes`, `rules`, `game`];
+    this.keepButtonScreensNames = [`rules`, `game`];
+    this.keepFooterScreensNames = [`prizes`, `rules`];
+    this.delayedHideScreensNames = [`rules`];
     this.activeScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
@@ -20,20 +23,45 @@ export default class FullPageScroll {
   init() {
     document.addEventListener(`wheel`, throttle(this.onScrollHandler, this.THROTTLE_TIMEOUT, {trailing: true}));
     window.addEventListener(`popstate`, this.onUrlHashChengedHandler);
-    document.body.addEventListener(`screenChanged`, ({ detail }) => this.onScreenChanged(detail));
+    document.body.addEventListener(`screenChanged`, ({detail}) => {
+      setTimeout(() => this.onScreenChanged(detail), 0);
+    });
     window.addEventListener(`load`, () => this.onLoad());
   }
 
-  onScreenChanged({ screenName }) {
+  onScreenChanged({screenName}) {
     if (this.withBackroundScreensNames.includes(screenName)) {
       this.backgroundElement.classList.add(`active`);
     } else {
       this.backgroundElement.classList.remove(`active`);
     }
+
+    if (this.keepButtonScreensNames.includes(screenName)) {
+      if (!document.body.classList.contains(`active-button`)) {
+        setTimeout(() => {
+          document.body.classList.add(`active-button`);
+        }, this.CHANGE_SCREEN_DURATION);
+      }
+    } else {
+      document.body.classList.remove(`active-button`);
+    }
+
+    if (this.keepFooterScreensNames.includes(screenName)) {
+      if (!document.body.classList.contains(`active-footer`)) {
+        document.body.classList.add(`show-footer`);
+
+        setTimeout(() => {
+          document.body.classList.remove(`show-footer`);
+          document.body.classList.add(`active-footer`);
+        }, this.CHANGE_SCREEN_DURATION);
+      }
+    } else {
+      document.body.classList.remove(`active-footer`);
+    }
   }
 
   onLoad() {
-    this.onUrlHashChanged();
+    this.onUrlHashChanged(true);
     setTimeout(() => {
       document.body.classList.add(`loaded`);
     }, 0);
@@ -57,24 +85,29 @@ export default class FullPageScroll {
     }, this.THROTTLE_TIMEOUT);
   }
 
-  onUrlHashChanged() {
+  onUrlHashChanged(isInitialRun) {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
-    this.changePageDisplay();
+    this.changePageDisplay(isInitialRun);
   }
 
-  changePageDisplay() {
-    this.changeVisibilityDisplay();
+  changePageDisplay(isInitialRun) {
+    this.changeVisibilityDisplay(isInitialRun);
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
   }
 
-  changeVisibilityDisplay() {
+  changeVisibilityDisplay(isInitialRun) {
+    const visibilityChangeDuration = isInitialRun === true ? 0 : this.CHANGE_SCREEN_DURATION;
+
     this.screenElements.forEach((screen) => {
+      const additionHideDuration = visibilityChangeDuration && this.delayedHideScreensNames.includes(screen.id) ? 250 : 0;
+
       if (screen.classList.contains(`active`)) {
         setTimeout(() => {
           screen.classList.add(`screen--hidden`);
-        }, this.CHANGE_SCREEN_DURATION);
+          screen.classList.remove(`show`);
+        }, visibilityChangeDuration + additionHideDuration);
       } else {
         screen.classList.add(`screen--hidden`);
       }
@@ -83,7 +116,8 @@ export default class FullPageScroll {
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+      this.screenElements[this.activeScreen].classList.add(`show`);
+    }, visibilityChangeDuration);
   }
 
   changeActiveMenuItem() {
