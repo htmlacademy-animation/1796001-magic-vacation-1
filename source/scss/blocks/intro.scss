@@ -50,6 +50,87 @@
   @media (max-width: $mobile) and (orientation: landscape) {
     font-size: 5rem;
   }
+
+  .word-text + .word-text {
+    position: relative;
+    top: -0.21em;
+  }
+
+  .word-text:nth-child(1) span {
+    &:nth-child(1) { // Т
+      transition-delay: 115ms;
+    }
+
+    &:nth-child(2) { // А
+      transition-delay: 50ms;
+    }
+
+    &:nth-child(3) { // И
+      transition-delay: 0ms;
+    }
+
+    &:nth-child(4) { // Н
+      transition-delay: 50ms;
+    }
+
+    &:nth-child(5) { // С
+      transition-delay: 85ms;
+    }
+
+    &:nth-child(6) { // Т
+      transition-delay: 50ms;
+    }
+
+    &:nth-child(7) { // В
+      transition-delay: 0ms;
+    }
+
+    &:nth-child(8) { // Е
+      transition-delay: 155ms;
+    }
+
+    &:nth-child(9) { // Н
+      transition-delay: 85ms;
+    }
+
+    &:nth-child(10) { // Н
+      transition-delay: 0ms;
+    }
+
+    &:nth-child(11) { // Ы
+      transition-delay: 85ms;
+    }
+
+    &:nth-child(12) { // Й
+      transition-delay: 55ms;
+    }
+  }
+
+  .word-text:nth-child(2) span {
+    &:nth-child(1) { // О
+      transition-delay: 320ms;
+    }
+
+    &:nth-child(2) { // Т
+      transition-delay: 360ms;
+    }
+
+    &:nth-child(3) { // П
+      transition-delay: 290ms;
+    }
+
+    &:nth-child(4) { // У
+      transition-delay: 185ms;
+    }
+
+    &:nth-child(5) { // С
+      transition-delay: 320ms;
+    }
+
+    &:nth-child(6) { // К
+      transition-delay: 230ms;
+    }
+  }
 }
 
 .intro__content {
@@ -97,6 +178,7 @@
   transform: translateY(20%);
   transition-property: transform, opacity;
   transition-duration: 0.5s;
+  transition-delay: 0.2s;
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -150,11 +232,19 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.2;
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.5s;
+  transition-delay: 0.8s;
 
   @media (min-width: $stop-scaling) {
     margin: 0 0 16px;
     width: 250px;
     font-size: 24px;
+  }
+
+  .active & {
+    opacity: 1;
   }
 }
 
@@ -169,5 +259,67 @@
   @media (min-width: $stop-scaling) {
     margin: 0 0 0 -5px;
     font-size: 48px;
+  }
+
+  .word-text:nth-child(1) span {
+    &:nth-child(1) { // О
+      transition-delay: 0.7s + 75ms;
+    }
+
+    &:nth-child(2) { // 1
+      transition-delay: 0.7s + 45ms;
+    }
+  }
+
+  .word-text:nth-child(2) span {
+    &:nth-child(1) { // -
+      transition-delay: 0.7s;
+    }
+  }
+
+  .word-text:nth-child(3) span {
+    &:nth-child(1) { // 3
+      transition-delay: 0.7s + 100ms;
+    }
+
+    &:nth-child(2) { // 1
+      transition-delay: 0.7s + 30ms;
+    }
+
+    &:nth-child(3) { // .
+      transition-delay: 0.7s + 35ms;
+    }
+
+    &:nth-child(4) { // 0
+      transition-delay: 0.7s + 45ms;
+    }
+
+    &:nth-child(5) { // 5
+      transition-delay: 0.7s + 130ms;
+    }
+  }
+
+  .word-text:nth-child(4) span {
+    &:nth-child(1) { // /
+      transition-delay: 0.7s + 45ms;
+    }
+  }
+
+  .word-text:nth-child(5) span {
+    &:nth-child(1) { // 2
+      transition-delay: 0.7s + 0ms;
+    }
+
+    &:nth-child(2) { // 0
+      transition-delay: 0.7s + 100ms;
+    }
+
+    &:nth-child(3) { // 2
+      transition-delay: 0.7s + 75ms;
+    }
+
+    &:nth-child(4) { // 0
+      transition-delay: 0.7s + 30ms;
+    }
   }
 }

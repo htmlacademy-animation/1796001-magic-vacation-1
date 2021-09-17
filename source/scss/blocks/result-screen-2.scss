@@ -1,0 +1,245 @@
+.result--prize .form {
+  &__field {
+    transition-property: opacity, width;
+    transition-duration: 0s, 0.8s;
+    transition-delay: 0.5s, 0.45s;
+
+    .screen--show & {
+      opacity: 1;
+      width: 100%;
+    }
+
+    &::placeholder {
+      opacity: 0;
+      transition: opacity 0.3s ease 0.85s;
+
+      .screen--show & {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__button {
+    transition-duration: 0.5s, 0.4s;
+    transition-delay: 0.65s, 0.4s;
+
+    .screen--show & {
+      opacity: 1;
+      color: $c-dark;
+    }
+  }
+}
+
+.result__image {
+  &--suitcase {
+    width: 820px;
+    height: 445px;
+    top: 12vw;
+
+    @media (max-width: 866px) {
+      width: calc(100vw - 2rem);
+      height: calc(57.3vw - 2rem);
+    }
+  }
+}
+
+.result-img {
+  position: absolute;
+
+  &--flamingo {
+    width: 39%;
+    left: 17%;
+    top: 19%;
+    transform-origin: 55% 55%;
+
+    .screen--show & {
+      animation: showFlamingo 0.5s cubic-bezier(0.13, 0.93, 0.44, 1), flyFlamingo 2.2s cubic-bezier(0.3, 0, 0.6, 1) 0.4s infinite alternate;
+    }
+  }
+
+  &--suitcase {
+    width: 53%;
+    transform: rotate(-8deg);
+    left: 20.8%;
+    top: 0%;
+
+    .screen--show & {
+      animation: showSuitcase 0.5s cubic-bezier(0.16, 1.42, 0.46, 0.95);
+    }
+  }
+
+  &--leaf-green {
+    width: 50%;
+    right: 0;
+    top: 41%;
+    opacity: 0;
+    transform-origin: 0% 50%;
+
+    .screen--show & {
+      animation: showGreenLeaf 2.3s cubic-bezier(0.3, 0, 0.6, 1) 0.1s forwards;
+    }
+  }
+
+  &--leaf1 {
+    width: 41%;
+    right: 8%;
+    top: 0;
+    opacity: 0;
+    transform-origin: 0% 50%;
+
+    .screen--show & {
+      animation: showLeaf1 2.2s cubic-bezier(0.3, 0, 0.6, 1) 0.1s forwards;
+    }
+  }
+
+  &--leaf2 {
+    width: 41%;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+    transform-origin: 100% 50%;
+
+    .screen--show & {
+      animation: showLeaf2 2.2s cubic-bezier(0.3, 0, 0.6, 1) 0.1s forwards;
+    }
+  }
+}
+
+@keyframes showFlamingo {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 80%, 0) rotate(-45deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes flyFlamingo {
+  0% {
+    transform: translate3d(0, 0%, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate3d(0, 5%, 0) rotate(-4.85deg);
+  }
+
+  53% {
+    transform: translate3d(0, 4.85%, 0) rotate(-5deg);
+  }
+
+  100% {
+    transform: translate3d(0, 0%, 0) rotate(0deg);
+  }
+}
+
+@keyframes showSuitcase {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 80%, 0) scale(0) rotate(-8deg);
+  }
+
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1) rotate(-8deg);
+  }
+}
+
+@keyframes showLeaf1 {
+  0% {
+    transform: rotate(-55deg);
+  }
+
+  20% {
+    transform: rotate(10deg);
+    opacity: 1;
+  }
+
+  37% {
+    transform: rotate(-5deg);
+  }
+
+  53% {
+    transform: rotate(3deg);
+  }
+
+  69% {
+    transform: rotate(-1.5deg);
+  }
+
+  84% {
+    transform: rotate(0.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes showLeaf2 {
+  0% {
+    transform: rotate(55deg);
+  }
+
+  19% {
+    transform: rotate(-10deg);
+    opacity: 1;
+  }
+
+  38% {
+    transform: rotate(5deg);
+  }
+
+  54% {
+    transform: rotate(-3deg);
+  }
+
+  69% {
+    transform: rotate(1.5deg);
+  }
+
+  85% {
+    transform: rotate(-0.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes showGreenLeaf {
+  0% {
+    transform: rotate(-55deg);
+  }
+
+  20% {
+    transform: rotate(10deg);
+    opacity: 1;
+  }
+
+  37% {
+    transform: rotate(-5deg);
+  }
+
+  53% {
+    transform: rotate(3deg);
+  }
+
+  69% {
+    transform: rotate(-1.5deg);
+  }
+
+  84% {
+    transform: rotate(0.5deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+}
