@@ -1,0 +1,16 @@
+.word-text {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 0.17em 0.1em 0 0.1em;
+  margin: -0.17em -0.1em 0 -0.1em;
+
+  & > span {
+    transform: translate3d(0, 1.07em, 0);
+    display: inline-block;
+
+    .show & {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

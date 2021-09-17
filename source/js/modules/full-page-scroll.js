@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import AnimateTypo from './animate-typo';
 
 export default class FullPageScroll {
   constructor() {
@@ -91,7 +92,18 @@ export default class FullPageScroll {
     this.changePageDisplay(isInitialRun);
   }
 
+  animateTitles() {
+    const introTitle = new AnimateTypo(`.intro__title`, 600, false, `transform`);
+    const introDate = new AnimateTypo(`.intro__date`, 400, false, `transform`);
+    const animateTexts = new AnimateTypo(`.animate-text`, 400, true, `transform`);
+
+    introTitle.prepareText();
+    introDate.prepareText();
+    animateTexts.prepareText();
+  }
+
   changePageDisplay(isInitialRun) {
+    this.animateTitles();
     this.changeVisibilityDisplay(isInitialRun);
     this.changeActiveMenuItem();
     this.emitChangeDisplayEvent();
