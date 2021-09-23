@@ -188,12 +188,37 @@
   }
 }
 
+@keyframes rollControlLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-200%, 0, 0) rotate(-360deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0%, 0, 0) rotate(0deg);
+  }
+}
+
+@keyframes rollControlRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(200%, 0, 0) rotate(360deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0%, 0, 0) rotate(0deg);
+  }
+}
+
 .slider__control {
   @include btn-reset;
   position: relative;
   width: 4rem;
   height: 4rem;
   color: $c-dark;
+  opacity: 0;
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -254,6 +279,18 @@
     }
   }
 
+  &--prev {
+    animation: rollControlLeft 0.35s ease-out forwards paused;
+  }
+
+  &--next {
+    animation: rollControlRight 0.35s ease-out forwards paused;
+  }
+
+  .show & {
+    animation-play-state: running;
+  }
+
   &.swiper-button-disabled {
     opacity: 0.5;
     pointer-events: none;
@@ -272,6 +309,8 @@
   font-weight: 400;
   font-size: 2.4rem;
   line-height: 4rem;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 
   @media (min-width: $stop-scaling) {
     bottom: 28px;
@@ -313,5 +352,9 @@
       height: 0.4rem;
       background-color: $c-light;
     }
+  }
+
+  .show & {
+    opacity: 1;
   }
 }
