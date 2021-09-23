@@ -86,9 +86,19 @@ export default class FullPageScroll {
     }, this.THROTTLE_TIMEOUT);
   }
 
+  setPageClass() {
+    document.body.classList.forEach((el) => {
+      if (el.startsWith(`active-screen-`)) {
+        document.body.classList.remove(el);
+      }
+    });
+    document.body.classList.add(`active-screen-${this.screenElements[this.activeScreen].id}`);
+  }
+
   onUrlHashChanged(isInitialRun) {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
+    this.setPageClass();
     this.changePageDisplay(isInitialRun);
   }
 

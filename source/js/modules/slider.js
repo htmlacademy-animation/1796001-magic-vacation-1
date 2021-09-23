@@ -4,6 +4,26 @@ export default () => {
   let storySlider;
   let sliderContainer = document.getElementById(`story`);
   sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
+  let handleBodyClass = (id) => {
+    const rightId = (() => {
+      if (id === 2 || id === 3) {
+        return 2;
+      } else if (id === 4 || id === 5) {
+        return 3;
+      } else if (id === 6 || id === 7) {
+        return 4;
+      }
+
+      return 1;
+    })();
+    document.body.classList.forEach((el) => {
+      if (el.startsWith(`active-story-`)) {
+        document.body.classList.remove(el);
+      }
+    });
+
+    document.body.classList.add(`active-story-${rightId}`);
+  };
 
   const setSlider = function () {
     if (((window.innerWidth / window.innerHeight) < 1) || window.innerWidth < 769) {
@@ -16,6 +36,9 @@ export default () => {
           enabled: true
         },
         on: {
+          init: () => {
+            handleBodyClass(0);
+          },
           slideChange: () => {
             if (storySlider.activeIndex === 0 || storySlider.activeIndex === 1) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg"), linear-gradient(180deg, rgba(83, 65, 118, 0) 0%, #523E75 16.85%)`;
@@ -26,6 +49,8 @@ export default () => {
             } else if (storySlider.activeIndex === 6 || storySlider.activeIndex === 7) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg"), linear-gradient(180deg, rgba(45, 39, 63, 0) 0%, #2F2A42 16.85%)`;
             }
+
+            handleBodyClass(storySlider.realIndex);
           },
           resize: () => {
             storySlider.update();
@@ -50,6 +75,9 @@ export default () => {
           enabled: true
         },
         on: {
+          init: () => {
+            handleBodyClass(0);
+          },
           slideChange: () => {
             if (storySlider.activeIndex === 0) {
               sliderContainer.style.backgroundImage = `url("img/slide1.jpg")`;
@@ -60,6 +88,8 @@ export default () => {
             } else if (storySlider.activeIndex === 6) {
               sliderContainer.style.backgroundImage = `url("img/slide4.jpg")`;
             }
+
+            handleBodyClass(storySlider.realIndex);
           },
           resize: () => {
             storySlider.update();

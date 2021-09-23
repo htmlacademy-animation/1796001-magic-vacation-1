@@ -1,0 +1,29 @@
+.result--negative {
+  .result__button {
+    transition: color 0.35s ease;
+
+    span {
+      animation: rollControlRight 0.35s ease-out forwards paused;
+
+      .screen--show & {
+        animation-play-state: running;
+      }
+    }
+
+    .screen--show & {
+      color: $c-light;
+    }
+  }
+}
+
+@keyframes rollResetBtn {
+  0% {
+    opacity: 0;
+    transform: translate3d(200%, 0, 0) rotate(360deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0%, 0, 0) rotate(0deg);
+  }
+}
