@@ -2718,9 +2718,19 @@ img {
   }
 }
 .prizes__icon img {
-  display: block;
   width: 100%;
   height: auto;
+}
+.prizes__icon > img {
+  display: none;
+}
+@media (orientation: portrait) {
+  .prizes__icon img {
+    display: block;
+  }
+  .prizes__icon svg {
+    display: none;
+  }
 }
 
 .prizes__desc {
