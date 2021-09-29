@@ -1,5 +1,6 @@
 import throttle from 'lodash/throttle';
 import AnimateTypo from './animate-typo';
+import controlSmil from './control-smil';
 
 export default class FullPageScroll {
   constructor() {
@@ -139,6 +140,7 @@ export default class FullPageScroll {
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
       this.screenElements[this.activeScreen].classList.add(`show`);
+      controlSmil(this.screenElements[this.activeScreen].id);
     }, visibilityChangeDuration);
   }
 
