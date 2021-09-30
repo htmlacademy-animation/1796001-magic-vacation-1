@@ -198,6 +198,7 @@
         <line x1="106.25" y1="190.98" x2="68.77" y2="190.98" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2">
           <animate attributeName="x2"
                   to="73.77"
+                  dur="0.3s"
                   begin="prize1StartPoint.begin + 0.3s"
                   repeatCount="indefinite"/>
         </line>

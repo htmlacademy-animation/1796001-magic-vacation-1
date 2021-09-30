@@ -7,14 +7,20 @@ function reset(svg) {
   });
 }
 
+function resetAndStart(svg, selector) {
+  reset(svg);
+  const animationPoint = document.querySelector(selector);
+  animationPoint.beginElement();
+}
+
 export default function controlSmil(pageId) {
   switch (pageId) {
     case `prizes`:
-      const svg = document.querySelector(`#prize1`);
-      reset(svg);
-      const animationPoint = document.querySelector(`#prize1StartPoint`);
+      const svgPrize1 = document.querySelector(`#prize1`);
+      const svgPrize2 = document.querySelector(`#prize2`);
 
-      animationPoint.beginElement();
+      resetAndStart(svgPrize1, `#prize1StartPoint`);
+      resetAndStart(svgPrize2, `#prize2StartPoint`);
       break;
   }
 }
