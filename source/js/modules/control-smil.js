@@ -18,9 +18,11 @@ export default function controlSmil(pageId) {
     case `prizes`:
       const svgPrize1 = document.querySelector(`#prize1`);
       const svgPrize2 = document.querySelector(`#prize2`);
+      const svgPrize3 = document.querySelector(`#prize3`);
 
       resetAndStart(svgPrize1, `#prize1StartPoint`);
       resetAndStart(svgPrize2, `#prize2StartPoint`);
+      resetAndStart(svgPrize3, `#prize3StartPoint`);
       break;
   }
 }
