@@ -45,7 +45,7 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  transition: width 0.7s ease;
+  transition: flex-grow 0.7s ease;
   opacity: 0;
 
   &:focus {
@@ -82,7 +82,7 @@
   }
 
   .show & {
-    width: 100%;
+    flex-grow: 1;
     opacity: 1;
   }
 }
