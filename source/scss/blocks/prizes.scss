@@ -183,6 +183,10 @@
         width: 10rem;
       }
     }
+
+    b {
+      width: 0.548em;
+    }
   }
 
   &--cases {
@@ -217,6 +221,10 @@
         width: 7rem;
       }
     }
+
+    b {
+      width: 0.451em;
+    }
   }
 
   &--codes {
@@ -242,6 +250,10 @@
       @media (max-width: $mobile) and (orientation: landscape) {
         width: 10rem;
       }
+    }
+
+    b {
+      width: 1.548em;
     }
   }
 }
