@@ -1,6 +1,7 @@
 import throttle from 'lodash/throttle';
 import AnimateTypo from './animate-typo';
 import controlSmil from './control-smil';
+import {runTimer, resetTimer} from './game';
 
 export default class FullPageScroll {
   constructor() {
@@ -59,6 +60,17 @@ export default class FullPageScroll {
       }
     } else {
       document.body.classList.remove(`active-footer`);
+    }
+  }
+
+  onShow() {
+    const activeId = this.screenElements[this.activeScreen].id;
+    controlSmil(activeId);
+
+    if (activeId === `game`) {
+      runTimer();
+    } else {
+      resetTimer();
     }
   }
 
@@ -140,7 +152,7 @@ export default class FullPageScroll {
     setTimeout(() => {
       this.screenElements[this.activeScreen].classList.add(`active`);
       this.screenElements[this.activeScreen].classList.add(`show`);
-      controlSmil(this.screenElements[this.activeScreen].id);
+      this.onShow();
     }, visibilityChangeDuration);
   }
 
