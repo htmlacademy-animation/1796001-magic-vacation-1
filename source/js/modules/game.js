@@ -13,10 +13,10 @@ function getValue(value) {
 
 function setTimer(setTime) {
   const minuteVal = Math.floor(setTime / (60 * 1000));
-  const seccondVal = Math.floor((setTime % (60 * 1000)) / 1000);
+  const secondVal = Math.round((setTime % (60 * 1000)) / 1000);
 
   minEl.innerText = getValue(minuteVal);
-  secEl.innerText = getValue(seccondVal);
+  secEl.innerText = getValue(secondVal);
 }
 
 function runTimer(callback) {
@@ -34,6 +34,7 @@ function runTimer(callback) {
 
     if (remainTime < 0) {
       cancelAnimationFrame(reqId);
+      setTimer(0);
       if (callback) {
         callback();
       }
