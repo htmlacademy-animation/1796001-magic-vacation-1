@@ -2,6 +2,7 @@ import throttle from 'lodash/throttle';
 import AnimateTypo from './animate-typo';
 import controlSmil from './control-smil';
 import {runTimer, resetTimer} from './game';
+import {runCounters, resetCounters} from './prizes';
 
 export default class FullPageScroll {
   constructor() {
@@ -71,6 +72,12 @@ export default class FullPageScroll {
       runTimer();
     } else {
       resetTimer();
+    }
+
+    if (activeId === `prizes`) {
+      runCounters();
+    } else {
+      resetCounters();
     }
   }
 

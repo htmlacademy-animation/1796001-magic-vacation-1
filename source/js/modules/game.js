@@ -1,8 +1,10 @@
 const counter = document.querySelector(`.game__counter`);
 const minEl = counter.querySelector(`.minutes`);
 const secEl = counter.querySelector(`.seconds`);
-const maxTime = 5 * 60 * 1000;
-let remainTime = maxTime;
+const FPS = 1;
+const F_INTERVAL = 1000 / FPS;
+const DURATION = 5 * 60 * 1000;
+
 let reqId;
 
 function getValue(value) {
@@ -11,31 +13,33 @@ function getValue(value) {
 
 function setTimer(setTime) {
   const minuteVal = Math.floor(setTime / (60 * 1000));
-  const seccondVal = Math.floor((setTime % (60 * 1000)) / 1000);
+  const secondVal = Math.round((setTime % (60 * 1000)) / 1000);
 
   minEl.innerText = getValue(minuteVal);
-  secEl.innerText = getValue(seccondVal);
+  secEl.innerText = getValue(secondVal);
 }
 
 function runTimer(callback) {
+  let start = Date.now();
   let now;
-  let then = Date.now();
+  let then = start;
   let elapsed;
 
   const tick = () => {
     reqId = requestAnimationFrame(tick);
-
     now = Date.now();
     elapsed = now - then;
 
-    if (remainTime <= 0) {
+    const remainTime = DURATION - (now - start);
+
+    if (remainTime < 0) {
       cancelAnimationFrame(reqId);
+      setTimer(0);
       if (callback) {
         callback();
       }
-    } else if (elapsed >= 1000) {
-      then = now - (elapsed % 1000);
-      remainTime -= 1000;
+    } else if (elapsed >= F_INTERVAL) {
+      then = now - (elapsed % F_INTERVAL);
       setTimer(remainTime);
     }
   };
@@ -46,9 +50,8 @@ function runTimer(callback) {
 function resetTimer() {
   if (reqId) {
     cancelAnimationFrame(reqId);
-    setTimer(maxTime);
+    setTimer(DURATION);
     reqId = null;
-    remainTime = maxTime;
   }
 }
 
